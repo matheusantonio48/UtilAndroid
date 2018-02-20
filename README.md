@@ -13,4 +13,6 @@ dependencies {
 
 # Changelog
 * **0.0.6**
+    * Updated minSdkVersion 17
+* **0.0.5**
     * Initial release
