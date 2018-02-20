@@ -7,10 +7,10 @@
 ```
 dependencies {
     ...
-    compile 'com.viana:androidutil:1.0'
+    compile 'com.viana:androidutil:0.0.6'
 }
 ```
 
 # Changelog
-* **1.0**
+* **0.0.6**
     * Initial release
