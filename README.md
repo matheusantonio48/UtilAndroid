@@ -18,45 +18,7 @@ public class Cnae {
     private String mcc;
     private bool situacao;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getRamoAtividade() {
-        return ramoAtividade;
-    }
-
-    public void setRamoAtividade(String ramoAtividade) {
-        this.ramoAtividade = ramoAtividade;
-    }
-
-    public String getMcc() {
-        return mcc;
-    }
-
-    public void setMcc(String mcc) {
-        this.mcc = mcc;
-    }
-
-    public bool getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(bool situacao) {
-        this.situacao = situacao;
-    }
+    //TODO getters e setters
 }
 ```
 Para retornar a lista de objetos basta utilizar o método returnList conforme exemplo abaixo:
