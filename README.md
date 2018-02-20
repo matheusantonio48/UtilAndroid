@@ -94,7 +94,7 @@ sb.append("AND [id] = ?");
 //Sua Classe do SQLite
 SQLiteDatabase db = new SQLiteDatabase();
 
-ArrayList<ComboVenda> list = null;
+ArrayList<Cnae> list = null;
 try{
     Generic generic = new Generic(db);
    list = generic.executeQuery(Cnae.class, sb.toString(), new String[]{String.valueOf(id)});
