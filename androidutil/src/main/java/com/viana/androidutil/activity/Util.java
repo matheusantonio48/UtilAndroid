@@ -13,7 +13,7 @@ import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import static com.viana.androidutil.io.Util.getFilename;
+import static com.viana.androidutil.io.File.getFilename;
 
 /**
  * Created by Joao Viana on 17/02/2018.
