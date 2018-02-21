@@ -116,4 +116,25 @@ public class Generic {
 
         }
     }
+
+    public boolean isCadastrado(String pTabela, String pCampo, String pValor) throws Exception {
+        return isCadastrado(pTabela, new String[]{pCampo}, new String[]{pValor});
+    }
+
+    public boolean isCadastrado(String pTabela, String[] pCampos, String[] pValores) throws Exception {
+        StringBuilder sbCondicao = new StringBuilder();
+        for (int i = 0; i < pCampos.length; i++) {
+            sbCondicao.append(String.format("%1s = ?", pCampos[i]));
+            if (i < pCampos.length - 1)
+                sbCondicao.append(" AND ");
+        }
+
+        Cursor cursor = mSqLiteDatabase.query(pTabela, pCampos, sbCondicao.toString(), pValores, null, null, null, null);
+        try {
+            return (cursor != null && cursor.getCount() > 0);
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
 }
