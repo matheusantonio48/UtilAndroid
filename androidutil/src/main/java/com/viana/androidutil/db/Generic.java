@@ -92,29 +92,50 @@ public class Generic {
 
     public void toSave(Object pObject) throws Exception {
         ContentValues values = new ContentValues();
+        ArrayList<Field> camposChaves = new ArrayList<>();
         for (Field campo : pObject.getClass().getDeclaredFields()) {
             if (!campo.getType().isArray()) {
                 campo.setAccessible(true);
-                Object value = campo.get(pObject);
-                if (value != null) {
+
+                if (campo.getAnnotation(Key.class) != null)
+                    camposChaves.add(campo);
+
+                if (campo.get(pObject) != null) {
                     if (campo.getType().equals(String.class))
-                        values.put(campo.getName(), (String) value);
+                        values.put(campo.getName(), (String) campo.get(pObject));
                     else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
-                        values.put(campo.getName(), (boolean) value);
+                        values.put(campo.getName(), (boolean) campo.get(pObject));
                     else if (campo.getType().equals(int.class) || campo.getType().equals(Integer.class))
-                        values.put(campo.getName(), (int) value);
+                        values.put(campo.getName(), (int) campo.get(pObject));
                     else if (campo.getType().equals(Date.class))
                         values.put(campo.getName(), Util.dateTimeToString((Date) campo.get(pObject)));
                     else if (campo.getType().equals(Double.class) || campo.getType().equals(double.class)
                             || campo.getType().equals(Float.class) || campo.getType().equals(float.class))
-                        values.put(campo.getName(), (double) value);
+                        values.put(campo.getName(), (double) campo.get(pObject));
                 }
             }
         }
 
-        if (values.size() > 0) {
+        if (values.size() == 0)
+            throw new Exception("no parameter informed");
 
-        }
+        if (camposChaves.size() > 0) {
+            String[] Campos = new String[camposChaves.size()];
+            String[] Valores = new String[camposChaves.size()];
+            StringBuilder Condicao = new StringBuilder();
+            for (int i = 0; i < camposChaves.size(); i++) {
+                Campos[i] = camposChaves.get(i).getName();
+                Valores[i] = String.valueOf(camposChaves.get(i).get(pObject));
+                Condicao.append(String.format("%1s = ?", Campos[i]));
+                if (i < camposChaves.size() - 1)
+                    Condicao.append(" AND ");
+            }
+            if (!isCadastrado(pObject.getClass().getSimpleName(), Campos, Valores))
+                mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
+            else
+                mSqLiteDatabase.update(pObject.getClass().getSimpleName(), values, Condicao.toString(), Valores);
+        } else
+            mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
     }
 
     public boolean isCadastrado(String pTabela, String pCampo, String pValor) throws Exception {

@@ -72,4 +72,14 @@ public class ActivityUtil {
         shareIntent.setType("image/jpeg");
         pContext.startActivity(Intent.createChooser(shareIntent, "Compartilhar com"));
     }
+
+    public static void openNewApp(Context pContext, String pPackageName) throws Exception {
+        Intent intent = pContext.getPackageManager().getLaunchIntentForPackage(pPackageName);
+        if (intent == null) {
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + pPackageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        pContext.startActivity(intent);
+    }
 }
