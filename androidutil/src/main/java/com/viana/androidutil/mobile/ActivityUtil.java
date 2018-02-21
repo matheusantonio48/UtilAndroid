@@ -1,4 +1,4 @@
-package com.viana.androidutil.activity;
+package com.viana.androidutil.mobile;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,13 +13,13 @@ import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import static com.viana.androidutil.io.File.getFilename;
+import static com.viana.androidutil.io.FileIo.getFilename;
 
 /**
- * Created by Joao Viana on 17/02/2018.
+ * Created by joao.viana on 21/02/2018.
  */
 
-public class Util {
+public class ActivityUtil {
     public static void openNewActivity(Context pContext, Class<?> pClass, Bundle pParametros, boolean pFechar) throws Exception {
         Intent intent = new Intent(pContext, pClass);
         if (pParametros != null)

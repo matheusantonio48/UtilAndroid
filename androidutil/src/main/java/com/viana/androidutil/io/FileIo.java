@@ -3,13 +3,15 @@ package com.viana.androidutil.io;
 import android.content.Context;
 import android.os.Environment;
 
+import java.io.File;
+
 /**
  * Created by joao.viana on 21/02/2018.
  */
 
-public class File {
+public class FileIo {
     public static String getFilePath(Context pContext) throws Exception {
-        java.io.File mediaStorageDir = new java.io.File(Environment.getExternalStorageDirectory()
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
                 + "/Android/data/"
                 + pContext.getPackageName()
                 + "/Files/Compressed");
