@@ -1,5 +1,6 @@
 package com.viana.androidutil.db;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 
 /**
  * Created by Joao Viana on 17/02/2018.
+ * Incluído método toSave on 20/02/2018.
  */
 
 public class Generic {
@@ -85,6 +87,33 @@ public class Generic {
                 return pCursor.getBlob(pIndex);
             default:
                 return null;
+        }
+    }
+
+    public void toSave(Object pObject) throws Exception {
+        ContentValues values = new ContentValues();
+        for (Field campo : pObject.getClass().getDeclaredFields()) {
+            if (!campo.getType().isArray()) {
+                campo.setAccessible(true);
+                Object value = campo.get(pObject);
+                if (value != null) {
+                    if (campo.getType().equals(String.class))
+                        values.put(campo.getName(), (String) value);
+                    else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
+                        values.put(campo.getName(), (boolean) value);
+                    else if (campo.getType().equals(int.class) || campo.getType().equals(Integer.class))
+                        values.put(campo.getName(), (int) value);
+                    else if (campo.getType().equals(Date.class))
+                        values.put(campo.getName(), Util.dateTimeToString((Date) campo.get(pObject)));
+                    else if (campo.getType().equals(Double.class) || campo.getType().equals(double.class)
+                            || campo.getType().equals(Float.class) || campo.getType().equals(float.class))
+                        values.put(campo.getName(), (double) value);
+                }
+            }
+        }
+
+        if (values.size() > 0) {
+
         }
     }
 }

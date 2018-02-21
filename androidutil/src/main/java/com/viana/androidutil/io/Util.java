@@ -19,14 +19,35 @@ public class Util {
     }
 
     public static Date stringToDate(String pDate, String pFormat) {
-        if (pDate == null)
+        try {
+            if (pDate == null)
+                return null;
+            ParsePosition pos = new ParsePosition(0);
+            SimpleDateFormat simpledateformat = new SimpleDateFormat(pFormat, Locale.getDefault());
+            return simpledateformat.parse(pDate, pos);
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
-        ParsePosition pos = new ParsePosition(0);
-        SimpleDateFormat simpledateformat = new SimpleDateFormat(pFormat, Locale.getDefault());
-        return simpledateformat.parse(pDate, pos);
+        }
     }
 
     public static Date stringToDate(String pDate) {
         return stringToDate(pDate, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public static String dateTimeToString(Date pDate) {
+        return dateToString(pDate, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public static String dateToString(Date pDate, String pFormato) {
+        try {
+            if (pDate == null)
+                return "";
+            SimpleDateFormat dateFormat = new SimpleDateFormat(pFormato, Locale.getDefault());
+            return dateFormat.format(pDate);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
     }
 }
