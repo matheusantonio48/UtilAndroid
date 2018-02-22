@@ -12,11 +12,10 @@ Exemplo:
 
 ``` java
 public class Cnae {
-    @Key
     private int id;
     private String codigo;
     private String ramoAtividade;
-    private String mcc;
+    private int mcc;
     private bool situacao;
 
     //TODO getters e setters
@@ -60,12 +59,42 @@ SQLiteDatabase db = new SQLiteDatabase();
 ArrayList<Cnae> list = null;
 try{
     Generic generic = new Generic(db);
-   list = generic.executeQuery(Cnae.class, sb.toString(), new String[]{String.valueOf(id)});
+    list = generic.executeQuery(Cnae.class, sb.toString(), new String[]{String.valueOf(id)});
 } catch (Exception ex){
     //TODO Exception
 }
-
 ```
+Para Salvar as informações no banco SQLite basta utilizar o método toSave conforme exemplo abaixo:
+``` java
+try{
+    Cnae item = new Cnae();
+    item.setCodigo("0111301");
+    item.setRamoAtividade("Cooperativas Agrícolas");
+    item.setMcc(763);
+    item.setSituacao(true);
+    
+    //Sua Classe do SQLite
+    SQLiteDatabase db = new SQLiteDatabase();
+    
+    Generic generic = new Generic(db);
+    generic.toSave(item);
+} catch (Exception ex){
+    //TODO Exception
+}
+```
+Você deve incluír Annotation Key para sinalizar a Primary Key. 
+``` java
+...
+import com.viana.androidutil.db.Key;
+
+public class Cnae {
+    @Key
+    private int id;
+    ...
+}
+```
+O método toSave verifica se o registro já existe na tabela para inserir ou atualizar as informações.
+
 # Gradle
 Incluir a biblioteca no arquivo build.gradle do aplicativo
 ```
@@ -88,3 +117,18 @@ repositories {
     * Updated minSdkVersion 17
 * **0.0.5**
     * Initial release
+ 
+ # License
+Copyright 2018 Viana
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
