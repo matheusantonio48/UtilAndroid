@@ -1,5 +1,6 @@
 package com.viana.androidutil.io;
 
+import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,5 +50,19 @@ public class Util {
             ex.printStackTrace();
             return "";
         }
+    }
+
+    public static boolean isNullOrEmpty(String pValor) {
+        if (pValor == null)
+            return true;
+        else if (pValor.trim().isEmpty())
+            return true;
+
+        return false;
+    }
+
+    public static String formatValue(Double valor) {
+        DecimalFormat precision = new DecimalFormat("0.00");
+        return precision.format(valor);
     }
 }

@@ -41,6 +41,9 @@ public class Generic {
     }
 
     public <T> ArrayList<T> executeQuery(Class<T> pClass, String pComandoSql, String[] pParametros) throws Exception {
+        if (pClass.isArray())
+            throw new Exception("class type not allowed");
+
         ArrayList<T> lista = new ArrayList<>();
         Cursor cursor = null;
         try {
@@ -49,6 +52,8 @@ public class Generic {
                 do {
                     T objeto = pClass.newInstance();
                     for (Field campo : pClass.getDeclaredFields()) {
+                        if (campo.getType().isArray())
+                            continue;
                         int index = cursor.getColumnIndex(campo.getName());
                         if (index > -1) {
                             campo.setAccessible(true);
@@ -91,6 +96,9 @@ public class Generic {
     }
 
     public void toSave(Object pObject) throws Exception {
+        if (pObject.getClass().isArray())
+            throw new Exception("class type not allowed");
+
         ContentValues values = new ContentValues();
         ArrayList<Field> camposChaves = new ArrayList<>();
         for (Field campo : pObject.getClass().getDeclaredFields()) {
