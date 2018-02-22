@@ -12,6 +12,7 @@ Exemplo:
 
 ``` java
 public class Cnae {
+    @Key
     private int id;
     private String codigo;
     private String ramoAtividade;
@@ -70,7 +71,7 @@ Incluir a biblioteca no arquivo build.gradle do aplicativo
 ```
 dependencies {
     ...
-    implementation 'com.viana:androidutil:0.0.6'
+    implementation 'com.viana:androidutil:0.0.7'
 }
 ```
 Se necessário basta incluir a referência do repositório no arquivo build.gradle do projeto
@@ -81,6 +82,8 @@ repositories {
 }
 ```
 # Changelog
+* **0.0.7**
+    * Included method toSave
 * **0.0.6**
     * Updated minSdkVersion 17
 * **0.0.5**
