@@ -16,7 +16,7 @@ public class Cnae {
     private String codigo;
     private String ramoAtividade;
     private int mcc;
-    private bool situacao;
+    private boolean situacao;
 
     //TODO getters e setters
 }
