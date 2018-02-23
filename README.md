@@ -46,11 +46,12 @@ Ou você pode informar a query da consulta conforme exemplo abaixo:
 int id = 2;
 
 StringBuilder sb = new StringBuilder();
-sb.append("SELECT [id]");
-sb.append(",[ramoAtividade]");
-sb.append(",[mcc]");
-sb.append(",[situacao]");
-sb.append("FROM [Cnae]");
+sb.append("SELECT [id] ");
+sb.append(",[ramoAtividade] ");
+sb.append(",[mcc] ");
+sb.append(",[situacao] ");
+sb.append("FROM [Cnae] ");
+sb.append("WHERE 1=1 ");
 sb.append("AND [id] = ?");
 
 //Sua Classe do SQLite
