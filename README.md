@@ -69,6 +69,7 @@ Para Salvar as informações no banco SQLite basta utilizar o método toSave con
 ``` java
 try{
     Cnae item = new Cnae();
+    item.setId(1);
     item.setCodigo("0111301");
     item.setRamoAtividade("Cooperativas Agrícolas");
     item.setMcc(763);
