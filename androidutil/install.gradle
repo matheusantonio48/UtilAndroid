@@ -11,7 +11,7 @@ install {
                 artifactId 'androidutil'
 
                 name 'androidutil'
-                description 'A collections of methods to work with Date objects.'
+                description ''
                 url 'https://github.com/JoaoVitorViana/UtilAndroid'
 
                 licenses {
