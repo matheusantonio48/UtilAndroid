@@ -114,7 +114,7 @@ repositories {
 ```
 # Changelog
 * **0.0.8**
-    * retorno da identidade não ao método toSave
+    * return of the primary key in the toSave method
 * **0.0.7**
     * Included method toSave
 * **0.0.6**
