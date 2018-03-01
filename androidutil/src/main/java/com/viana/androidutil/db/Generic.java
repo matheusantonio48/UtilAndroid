@@ -95,7 +95,7 @@ public class Generic {
         }
     }
 
-    public void toSave(Object pObject) throws Exception {
+    public long toSave(Object pObject) throws Exception {
         if (pObject.getClass().isArray())
             throw new Exception("class type not allowed");
 
@@ -139,11 +139,11 @@ public class Generic {
                     Condicao.append(" AND ");
             }
             if (!isCadastrado(pObject.getClass().getSimpleName(), Campos, Valores))
-                mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
+                return mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
             else
-                mSqLiteDatabase.update(pObject.getClass().getSimpleName(), values, Condicao.toString(), Valores);
+                return mSqLiteDatabase.update(pObject.getClass().getSimpleName(), values, Condicao.toString(), Valores);
         } else
-            mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
+            return mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
     }
 
     public boolean isCadastrado(String pTabela, String pCampo, String pValor) throws Exception {
