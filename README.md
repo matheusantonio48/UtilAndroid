@@ -102,7 +102,7 @@ Incluir a biblioteca no arquivo build.gradle do aplicativo
 ```
 dependencies {
     ...
-    implementation 'com.viana:androidutil:0.0.8'
+    implementation 'com.viana:androidutil:0.0.9'
 }
 ```
 Se necessário basta incluir a referência do repositório no arquivo build.gradle do projeto
@@ -113,6 +113,8 @@ repositories {
 }
 ```
 # Changelog
+* **0.0.9**
+    * bug fixes
 * **0.0.8**
     * return of the primary key in the toSave method
 * **0.0.7**
