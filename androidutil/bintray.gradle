@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '0.0.8'
+version = '0.0.9'
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -22,8 +22,8 @@ artifacts {
 }
 
 bintray {
-    user = ''
-    key = ''
+    user = 'joaovitorviana'
+    key = 'dd12fde6fa07568afe8998dc1aaa4fbb0d379f69'
 
     configurations = ['archives']
     pkg {

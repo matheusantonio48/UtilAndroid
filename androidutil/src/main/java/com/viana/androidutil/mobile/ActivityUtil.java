@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,5 +82,12 @@ public class ActivityUtil {
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         pContext.startActivity(intent);
+    }
+
+    public static void displayToast(Context pContext, String pTexto, boolean pLongo) {
+        if (pLongo)
+            Toast.makeText(pContext, pTexto, Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(pContext, pTexto, Toast.LENGTH_SHORT).show();
     }
 }

@@ -60,7 +60,7 @@ public class Generic {
                             if (campo.getType().equals(String.class))
                                 campo.set(objeto, cursor.getString(index));
                             else if (campo.getType().equals(Date.class))
-                                campo.set(objeto, Io.stringToDate(cursor.getString(index)));
+                                campo.set(objeto, Io.stringToDateTime(cursor.getString(index)));
                             else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
                                 campo.set(objeto, Io.stringToBoolean(cursor.getString(index)));
                             else

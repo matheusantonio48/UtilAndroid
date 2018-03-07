@@ -11,6 +11,11 @@ import java.util.Locale;
  */
 
 public class Io {
+    final public static String FormatDateTimeBr = "dd/MM/yyyy HH:mm:ss";
+    final public static String FormatDateBr = "dd/MM/yyyy";
+    final public static String FormatDateTimeDbBr = "yyyy-MM-dd HH:mm:ss";
+    final public static String FormatDateDbBr = "yyyy-MM-dd";
+
     public static boolean stringToBoolean(String pValor) {
         return numberToBoolean(Integer.valueOf(pValor));
     }
@@ -19,7 +24,23 @@ public class Io {
         return (pValor == 1);
     }
 
-    public static Date stringToDate(String pDate, String pFormat) {
+    public static Date getDateByInput(String pData) throws Exception {
+        return getDateTimeByInput(pData, FormatDateBr);
+    }
+
+    public static Date getDateTimeByInput(String pData, String pFormato) throws Exception {
+        return new SimpleDateFormat(pFormato, Locale.getDefault()).parse(pData);
+    }
+
+    public static Date getDateTimeByInput(String pData) throws Exception {
+        return getDateTimeByInput(pData, FormatDateTimeBr);
+    }
+
+    public static Date stringToDateTime(String pDate) {
+        return stringToDateTime(pDate, FormatDateTimeDbBr);
+    }
+
+    public static Date stringToDateTime(String pDate, String pFormat) {
         try {
             if (pDate == null)
                 return null;
@@ -32,15 +53,11 @@ public class Io {
         }
     }
 
-    public static Date stringToDate(String pDate) {
-        return stringToDate(pDate, "yyyy-MM-dd HH:mm:ss");
-    }
-
     public static String dateTimeToString(Date pDate) {
-        return dateToString(pDate, "yyyy-MM-dd HH:mm:ss");
+        return dateTimeToString(pDate, FormatDateTimeDbBr);
     }
 
-    public static String dateToString(Date pDate, String pFormato) {
+    public static String dateTimeToString(Date pDate, String pFormato) {
         try {
             if (pDate == null)
                 return "";
