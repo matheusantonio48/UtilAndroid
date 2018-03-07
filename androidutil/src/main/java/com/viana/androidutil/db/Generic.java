@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.viana.androidutil.io.Util;
+import com.viana.androidutil.io.Io;
 import com.viana.androidutil.io.StringBuilder;
 
 import java.lang.reflect.Field;
@@ -60,9 +60,9 @@ public class Generic {
                             if (campo.getType().equals(String.class))
                                 campo.set(objeto, cursor.getString(index));
                             else if (campo.getType().equals(Date.class))
-                                campo.set(objeto, Util.stringToDate(cursor.getString(index)));
-                            else if (campo.getType().equals(boolean.class))
-                                campo.set(objeto, Util.stringToBoolean(cursor.getString(index)));
+                                campo.set(objeto, Io.stringToDate(cursor.getString(index)));
+                            else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
+                                campo.set(objeto, Io.stringToBoolean(cursor.getString(index)));
                             else
                                 campo.set(objeto, getValorCursor(cursor, index));
                         }
@@ -105,10 +105,10 @@ public class Generic {
             if (!campo.getType().isArray()) {
                 campo.setAccessible(true);
 
-                if (campo.getAnnotation(Key.class) != null)
-                    camposChaves.add(campo);
-
                 if (campo.get(pObject) != null) {
+                    if (campo.getAnnotation(Key.class) != null)
+                        camposChaves.add(campo);
+
                     if (campo.getType().equals(String.class))
                         values.put(campo.getName(), (String) campo.get(pObject));
                     else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
@@ -116,7 +116,7 @@ public class Generic {
                     else if (campo.getType().equals(int.class) || campo.getType().equals(Integer.class))
                         values.put(campo.getName(), (int) campo.get(pObject));
                     else if (campo.getType().equals(Date.class))
-                        values.put(campo.getName(), Util.dateTimeToString((Date) campo.get(pObject)));
+                        values.put(campo.getName(), Io.dateTimeToString((Date) campo.get(pObject)));
                     else if (campo.getType().equals(Double.class) || campo.getType().equals(double.class)
                             || campo.getType().equals(Float.class) || campo.getType().equals(float.class))
                         values.put(campo.getName(), (double) campo.get(pObject));

@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Joao Viana on 17/02/2018.
+ * Created by Joao Viana on 06/03/2018.
  */
 
-public class Util {
+public class Io {
     public static boolean stringToBoolean(String pValor) {
         return numberToBoolean(Integer.valueOf(pValor));
     }
