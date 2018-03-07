@@ -22,8 +22,8 @@ artifacts {
 }
 
 bintray {
-    user = 'joaovitorviana'
-    key = 'dd12fde6fa07568afe8998dc1aaa4fbb0d379f69'
+    user = ''
+    key = ''
 
     configurations = ['archives']
     pkg {
