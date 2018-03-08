@@ -63,6 +63,8 @@ public class Generic {
                                 campo.set(objeto, Io.stringToDateTime(cursor.getString(index)));
                             else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
                                 campo.set(objeto, Io.stringToBoolean(cursor.getString(index)));
+                            else if (campo.getType().equals(double.class) || campo.getType().equals(Double.class))
+                                campo.set(objeto, cursor.getDouble(index));
                             else
                                 campo.set(objeto, getValorCursor(cursor, index));
                         }
@@ -112,7 +114,7 @@ public class Generic {
                     if (campo.getType().equals(String.class))
                         values.put(campo.getName(), (String) campo.get(pObject));
                     else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
-                        values.put(campo.getName(), (boolean) campo.get(pObject));
+                        values.put(campo.getName(), Io.booleanToNumber((boolean) campo.get(pObject)));
                     else if (campo.getType().equals(int.class) || campo.getType().equals(Integer.class))
                         values.put(campo.getName(), (int) campo.get(pObject));
                     else if (campo.getType().equals(Date.class))

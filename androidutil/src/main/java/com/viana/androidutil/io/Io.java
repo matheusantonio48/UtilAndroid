@@ -20,6 +20,10 @@ public class Io {
         return numberToBoolean(Integer.valueOf(pValor));
     }
 
+    public static int booleanToNumber(boolean pValor) {
+        return (pValor) ? 1 : 0;
+    }
+
     public static boolean numberToBoolean(int pValor) {
         return (pValor == 1);
     }
