@@ -102,7 +102,7 @@ Incluir a biblioteca no arquivo build.gradle do aplicativo
 ```
 dependencies {
     ...
-    implementation 'com.viana:androidutil:0.0.9'
+    implementation 'com.viana:androidutil:1.0.0'
 }
 ```
 Se necessário basta incluir a referência do repositório no arquivo build.gradle do projeto
@@ -112,18 +112,10 @@ repositories {
     maven { url  "https://dl.bintray.com/joaovitorviana/Viana" }
 }
 ```
-# Changelog
-* **0.0.9**
-    * bug fixes
-* **0.0.8**
-    * return of the primary key in the toSave method
-* **0.0.7**
-    * Included method toSave
-* **0.0.6**
-    * Updated minSdkVersion 17
-* **0.0.5**
-    * Initial release
- 
+# Release Notes
+
+Click the link [Release Notes](https://github.com/JoaoVitorViana/UtilAndroid/blob/master/ReleaseNotes.md)
+
  # License
 Copyright 2018 Viana
 
