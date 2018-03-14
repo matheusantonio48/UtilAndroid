@@ -24,7 +24,11 @@ public class Generic {
     }
 
     public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros) throws Exception {
-        return returnList(pClass, pParametros, null, 0);
+        return returnList(pClass, pParametros, null);
+    }
+
+    public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros, String pOrderBy) throws Exception {
+        return returnList(pClass, pParametros, pOrderBy, 0);
     }
 
     public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros, String pOrderBy, int pTop) throws Exception {
