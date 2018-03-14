@@ -78,7 +78,6 @@ public class Io {
             return true;
         else if (pValor.trim().isEmpty())
             return true;
-
         return false;
     }
 

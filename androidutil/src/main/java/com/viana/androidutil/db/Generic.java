@@ -24,6 +24,10 @@ public class Generic {
     }
 
     public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros) throws Exception {
+        return returnList(pClass, pParametros, null, 0);
+    }
+
+    public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros, String pOrderBy, int pTop) throws Exception {
         StringBuilder sbQuery = new StringBuilder();
         sbQuery.appendLine("SELECT * ");
         sbQuery.appendLine("FROM " + pClass.getSimpleName());
@@ -36,8 +40,11 @@ public class Generic {
                 parametros[i] = pParametros.get(i).getValor();
             }
         }
+        if (!Io.isNullOrEmpty(pOrderBy))
+            sbQuery.appendLine("ORDER BY " + pOrderBy);
+        if (pTop > 0)
+            sbQuery.appendLine("LIMIT " + String.valueOf(pTop));
         return executeQuery(pClass, sbQuery.toString(), parametros);
-
     }
 
     public <T> ArrayList<T> executeQuery(Class<T> pClass, String pComandoSql, String[] pParametros) throws Exception {
@@ -63,7 +70,8 @@ public class Generic {
                                 campo.set(objeto, Io.stringToDateTime(cursor.getString(index)));
                             else if (campo.getType().equals(boolean.class) || campo.getType().equals(Boolean.class))
                                 campo.set(objeto, Io.stringToBoolean(cursor.getString(index)));
-                            else if (campo.getType().equals(double.class) || campo.getType().equals(Double.class))
+                            else if (campo.getType().equals(double.class) || campo.getType().equals(Double.class)
+                                    || campo.getType().equals(float.class) || campo.getType().equals(Float.class))
                                 campo.set(objeto, cursor.getDouble(index));
                             else
                                 campo.set(objeto, getValorCursor(cursor, index));

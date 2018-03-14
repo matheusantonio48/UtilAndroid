@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '1.0.0'
+version = '1.0.1'
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -29,7 +29,7 @@ bintray {
     pkg {
         repo = 'Viana'
         name = 'androidutil'
-        desc = 'A collections of methods to work with Date objects.'
+        desc = ''
         websiteUrl = 'https://github.com/JoaoVitorViana/UtilAndroid'
         vcsUrl = 'https://github.com/JoaoVitorViana/UtilAndroid.git'
         licenses = ["Apache-2.0"]
