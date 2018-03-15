@@ -31,7 +31,7 @@ public class Generic {
         return returnList(pClass, pParametros, pOrderBy, 0);
     }
 
-    public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros, String pOrderBy, int pTop) throws Exception {
+    public <T> ArrayList<T> returnList(Class<T> pClass, ArrayList<Parametro> pParametros, String pOrderBy, int pLimit) throws Exception {
         StringBuilder sbQuery = new StringBuilder();
         sbQuery.appendLine("SELECT * ");
         sbQuery.appendLine("FROM " + pClass.getSimpleName());
@@ -46,8 +46,8 @@ public class Generic {
         }
         if (!Io.isNullOrEmpty(pOrderBy))
             sbQuery.appendLine("ORDER BY " + pOrderBy);
-        if (pTop > 0)
-            sbQuery.appendLine("LIMIT " + String.valueOf(pTop));
+        if (pLimit > 0)
+            sbQuery.appendLine("LIMIT " + String.valueOf(pLimit));
         return executeQuery(pClass, sbQuery.toString(), parametros);
     }
 
@@ -63,7 +63,7 @@ public class Generic {
                 do {
                     T objeto = pClass.newInstance();
                     for (Field campo : pClass.getDeclaredFields()) {
-                        if (campo.getType().isArray())
+                        if (campo.getType().isArray() || campo.getAnnotation(NotMapped.class) != null)
                             continue;
                         int index = cursor.getColumnIndex(campo.getName());
                         if (index > -1) {
@@ -116,7 +116,7 @@ public class Generic {
         ContentValues values = new ContentValues();
         ArrayList<Field> camposChaves = new ArrayList<>();
         for (Field campo : pObject.getClass().getDeclaredFields()) {
-            if (!campo.getType().isArray()) {
+            if (!campo.getType().isArray() && campo.getAnnotation(NotMapped.class) == null) {
                 campo.setAccessible(true);
 
                 if (campo.get(pObject) != null) {
