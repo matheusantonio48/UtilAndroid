@@ -46,7 +46,7 @@ public class Io {
 
     public static Date stringToDateTime(String pDate, String pFormat) {
         try {
-            if (pDate == null)
+            if (isNullOrEmpty(pDate))
                 return null;
             ParsePosition pos = new ParsePosition(0);
             SimpleDateFormat simpledateformat = new SimpleDateFormat(pFormat, Locale.getDefault());
