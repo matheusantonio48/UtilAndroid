@@ -1,4 +1,6 @@
  # ReleaseNotes
+  * **1.0.2**
+    * return throw exception in insert generic
  * **1.0.1**
     * Included order by e limit no generic
 * **1.0.0**
