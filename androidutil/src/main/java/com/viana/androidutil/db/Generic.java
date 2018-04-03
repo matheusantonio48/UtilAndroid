@@ -153,11 +153,11 @@ public class Generic {
                     Condicao.append(" AND ");
             }
             if (!isCadastrado(pObject.getClass().getSimpleName(), Campos, Valores))
-                return mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
+                return mSqLiteDatabase.insertOrThrow(pObject.getClass().getSimpleName(), null, values);
             else
                 return mSqLiteDatabase.update(pObject.getClass().getSimpleName(), values, Condicao.toString(), Valores);
         } else
-            return mSqLiteDatabase.insert(pObject.getClass().getSimpleName(), null, values);
+            return mSqLiteDatabase.insertOrThrow(pObject.getClass().getSimpleName(), null, values);
     }
 
     public boolean isCadastrado(String pTabela, String pCampo, String pValor) throws Exception {
