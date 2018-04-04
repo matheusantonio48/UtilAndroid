@@ -134,6 +134,8 @@ public class Generic {
                     else if (campo.getType().equals(Double.class) || campo.getType().equals(double.class)
                             || campo.getType().equals(Float.class) || campo.getType().equals(float.class))
                         values.put(campo.getName(), (double) campo.get(pObject));
+                } else if (campo.getAnnotation(Key.class) == null) {
+                    values.putNull(campo.getName());
                 }
             }
         }
