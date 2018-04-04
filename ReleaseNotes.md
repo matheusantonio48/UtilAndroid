@@ -1,4 +1,6 @@
  # ReleaseNotes
+   * **1.0.3**
+    * Included putNull toSave method
   * **1.0.2**
     * return throw exception in insert generic
  * **1.0.1**
