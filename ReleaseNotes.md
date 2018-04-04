@@ -1,7 +1,7 @@
  # ReleaseNotes
-   * **1.0.3**
+* **1.0.3**
     * Included putNull toSave method
-  * **1.0.2**
+* **1.0.2**
     * return throw exception in insert generic
  * **1.0.1**
     * Included order by e limit no generic
